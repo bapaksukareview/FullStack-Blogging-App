@@ -108,7 +108,7 @@ resource "aws_eks_node_group" "devopsshack" {
     min_size     = 3
   }
 
-  instance_types = ["t2.large"]
+  instance_types = ["c7i-flex.large"]
 
   remote_access {
     ec2_ssh_key = var.ssh_key_name
@@ -117,7 +117,8 @@ resource "aws_eks_node_group" "devopsshack" {
 }
 
 resource "aws_iam_role" "devopsshack_cluster_role" {
-  name = "devopsshack-cluster-role"
+  name_prefix = "devopsshack-cluster-role"
+  name_prefix = "devopsshack-node-group-role-"
 
   assume_role_policy = <<EOF
 {
